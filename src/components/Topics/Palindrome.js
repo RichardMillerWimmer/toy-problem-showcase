@@ -12,19 +12,22 @@ class Palindrome extends Component {
 
     handleInput(value) {
         this.setState({ userInput: value })
-    }
+    };
 
 
     checkPalindrome(userInput) {
-        let isPalindrome = ''
-        let stringToCheck = userInput.toLowerCase()
-        let reverseString = stringToCheck.reverse()
-        console.log(reverseString === stringToCheck)
-        return isPalindrome = reverseString === stringToCheck
-    }
-
-
-
+        let original = userInput
+        let backwards = userInput
+        backwards = backwards.toLowerCase()
+        backwards = backwards.split('')
+        backwards = backwards.reverse()
+        backwards = backwards.join('')
+        if (original === backwards) {
+            this.setState({ palindrome: true })
+        } else {
+            this.setState({ palindrome: false })
+        }
+    };
 
 
 
