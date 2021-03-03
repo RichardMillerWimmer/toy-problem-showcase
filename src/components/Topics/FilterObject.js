@@ -7,7 +7,7 @@ class FilterObject extends Component {
             unFilteredArray: [
                 { "name": "Jimmy Joe", "title": "Hack0r", "age": 12 },
                 { "name": "Jeremy Schrader", "age": 24, "hairColor": "brown" },
-                { "name": "Carly Armstrong", "title": null }
+                { "name": "Carly Armstrong", "title": 'CEO' }
             ],
             userInput: '',
             filterArray: []
