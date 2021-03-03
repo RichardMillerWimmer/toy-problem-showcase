@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class EvenAndOdd extends Component {
     constructor() {
+        super();
         this.state = {
             evenArray: [],
             oddArray: [],
@@ -9,21 +10,23 @@ class EvenAndOdd extends Component {
         }
     }
 
-    handleInput(event) {
-        this.setState({ unserInput: event.target.value })
+    handleInput(value) {
+        this.setState({ userInput: value })
     }
 
-    slpitArray() {
-        let copyArray = this.state.evenArray.slice()
+    slpitArray(userInput) {
+        let copyArray = userInput.split(',')
+        console.log(copyArray)
         let newEvenArray = []
         let newOddArray = []
-        copyArray.filter((num, index) => {
-            if (num % 2 === 0) {
-                newEvenArray.push(num)
-            } else if (num % 2 === 1) {
-                newEvenArray.push(num)
+        for (let i = 0; i < copyArray.length; i++) {
+            if (copyArray[i] % 2 === 0) {
+                newEvenArray.push(parseInt(copyArray[i], 10))
+            } else if (copyArray[i] % 2 === 1) {
+                newOddArray.push(parseInt(copyArray[i], 10))
             }
-        })
+        }
+        this.setState({ evenArray: newEvenArray.join(','), oddArray: newOddArray.join(',') })
     }
 
 
@@ -32,10 +35,10 @@ class EvenAndOdd extends Component {
         return (
             <div className='puzzleBox evenAndOddPB'>
                 <h4>Evens and Odds</h4>
-                <input className='inputLine' onChange={event => this.handleInput(event)}></input>
-                <button className='confirmationButton' onClick={ }></button>
-                <span className='resultBox'></span>
-                <span className='resultBox'></span>
+                <input className='inputLine' onChange={event => this.handleInput(event.target.value)}></input>
+                <button className='confirmationButton' onClick={() => { this.slpitArray(this.state.userInput) }}>Split</button>
+                <span className='resultsBox'>Evens [{this.state.evenArray}]</span>
+                <span className='resultsBox'>Odds [{this.state.oddArray}]</span>
             </div>
         )
     }
